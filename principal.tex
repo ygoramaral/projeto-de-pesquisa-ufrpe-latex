@@ -1,0 +1,378 @@
+% Modelo LaTeX para Projeto de Pesquisa da UFRPE
+% Baseado no modelo do Anexo I da Resolução CEPE/UFRPE Nº 361, de 17 de novembro de 2021.
+% Autor: Ygor Amaral Barbosa Leite de Sena
+% E-mail: ygor.amaral@ufrpe.br
+
+% O documento é dividido em duas partes: a seção administrativa e a parte científica. 
+\documentclass{projetodepesquisa} % classe para projetos de pesquisa da UFRPE
+
+\begin{document}
+	% início da seção administrativa do projeto de pesquisa
+	\identification
+
+	% título do projeto de pesquisa
+	\projecttitle{Aplicação de Modelos de Aprendizado de Máquina para Detecção de Padrões em Dados Climáticos no Semiárido Brasileiro}
+
+	% vigência do projeto (mês e ano de início e término), duração máxima de 60 meses
+	\term{Outubro de 2024}{Outubro de 2026}
+	
+	% área do projeto de acordo com a classificação do CNPq
+	\projectarea
+		{Ciência da Computação}{1.03.00.00-7}
+		{Sistemas de Computação}{1.03.04.00-2}
+		{Arquitetura de Sistemas de Computação}{1.03.04.02-9}
+
+	% informe as linhas de pesquisa do projeto
+	\researcharea{ % pode adicionar quantas linhas de pesquisa quiser
+		\raitem{Aplicação de Técnicas de Aprendizado de Máquina para Análise de Dados Climáticos}
+		\raitem{Desenvolvimento de Soluções Tecnológicas para Previsão e Monitoramento de Eventos Climáticos}
+		\raitem{Linha 3}
+		\raitem{...}
+	}
+
+	% até 6 palavras-chave, se não quiser usar todas, deixe {} em branco
+	\keywords{Aprendizado de Máquina}{Previsão Climática}{Semiárido Brasileiro
+	}{Eventos Climáticos Extremos}{Palavra 5}{}
+
+	% informar o grupo de pesquisa ao qual o projeto está vinculado
+	\researchgroup{Grupo de Estudo e Pesquisa em Análise Climática (GEPAC) \\ Link: http://dgp.cnpq.br/dgp/espelhogrupo/3782045197638521}
+	
+	% guardando o nome dos membros em comandos (para reutilização)
+	\newcommand{\firstmember}{Lucas Eduardo Alves Pereira da Costa}
+	\newcommand{\secondmember}{Sofia Almeida Rocha}
+	\newcommand{\thirdmember}{Gabriel Fernandes Oliveira}
+	\newcommand{\fourthmember}{Alice Rodrigues Ferreira}
+	
+	\members{ % pode adicionar quantos participantes quiser
+		\member{\firstmember}{724.551.744-41}{1138363}{lucas.eduardo@ufrpe.br}{Professor}{\memberrole{X}{}{}}{10h}{http://lattes.cnpq.br/8592476312904857}
+
+		\member{\secondmember}{658.897.664-06}{6072743}{sofia.almeida@ufrpe.br}{Professor}{\memberrole{}{}{X}}{1h}{http://lattes.cnpq.br/2014052733141383}
+		
+		\member{\thirdmember}{907.623.074-98}{}{gabriel.fernandes@ufrpe.br}{Estudante}{\memberrole{}{X}{}}{4h}{http://lattes.cnpq.br/8418911454153712}
+		
+		\member{\fourthmember}{714.857.864-79}{}{alice.rodrigues@ufrpe.br}{Estudante}{\memberrole{}{X}{}}{6h}{http://lattes.cnpq.br/0586522806900226}
+	}
+
+	% início da parte científica do projeto de pesquisa
+	\begin{abstract}
+		O semiárido brasileiro é uma das regiões mais afetadas por eventos climáticos extremos, como secas prolongadas e chuvas intensas. Essas variações climáticas trazem grandes impactos econômicos e sociais, especialmente nas atividades agrícolas e na gestão de recursos hídricos. O avanço das técnicas de aprendizado de máquina tem se mostrado promissor para a análise de dados climáticos complexos e a previsão de fenômenos extremos, proporcionando uma abordagem inovadora para mitigar os efeitos dessas condições adversas. Este projeto de pesquisa tem como objetivo principal desenvolver modelos de aprendizado de máquina capazes de identificar padrões climáticos e prever eventos extremos na região semiárida do Brasil. Serão explorados algoritmos como Redes Neurais, Florestas Aleatórias e Redes Neurais Convolucionais (CNN), utilizando dados históricos e em tempo real. Além disso, pretende-se criar um sistema de alerta precoce para auxiliar na tomada de decisões de agricultores e gestores de recursos, proporcionando respostas mais eficazes às variações climáticas. Os resultados esperados incluem o aprimoramento das previsões climáticas para a região e o desenvolvimento de ferramentas tecnológicas aplicáveis a contextos de alta variabilidade climática. Com isso, espera-se contribuir para o desenvolvimento sustentável da região, reduzindo os impactos negativos das secas e chuvas intensas sobre as comunidades locais.
+	\end{abstract}
+
+	\scisection{Introdução}\label{sec:introducao}
+	O semiárido brasileiro é uma das regiões mais desafiadoras do país em termos de desenvolvimento sustentável e enfrentamento de adversidades climáticas~\cite{andrade2020}. 
+	Abrangendo cerca de 980 mil quilômetros quadrados e lar de mais de 22 milhões de pessoas, a região se destaca por suas condições ambientais severas, incluindo a baixa pluviosidade, temperaturas elevadas e a distribuição irregular das chuvas~\cite{pereira2019}, como ilustrado na Figura~\ref{fig:semiarido}.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\linewidth]{imagens/ilustracao/clima\_semiarido}
+		\caption{Clima semiárido brasileiro}
+		\label{fig:semiarido}
+	\end{figure}
+	
+	
+	Conforme apresentado na Tabela~\ref{tab:impacto_climatico_semiarido}, eventos climáticos extremos, como secas prolongadas e chuvas intensas, têm causado perdas econômicas significativas na região semiárida brasileira, justificando a necessidade de métodos avançados de previsão para mitigar seus impactos. As longas secas que afligem o semiárido brasileiro, muitas vezes com períodos de estiagem que podem durar anos, afetam diretamente a agricultura de subsistência, a pecuária e, de maneira ainda mais crítica, o acesso a recursos hídricos para consumo humano e produção. Como resultado, a vulnerabilidade socioeconômica da população se agrava, tornando urgente o desenvolvimento de estratégias inovadoras para a mitigação dos impactos dessas condições climáticas adversas.
+	
+	
+	\begin{table}[ht]
+		\centering
+		\caption{Impacto dos Eventos Climáticos Extremos no Semiárido Brasileiro (2010-2020)}
+		\label{tab:impacto_climatico_semiarido}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\multirow{3}{*}{\textbf{Ano}} & \multirow{3}{*}{\parbox{3.5cm}{\centering\textbf{Períodos de Seca Prolongada}\\ \textbf{(meses)}}} & \multirow{3}{*}{\parbox{3.5cm}{\centering\textbf{Chuvas Intensas}\\ \textbf{(mm acumulados)}}} & \multirow{3}{*}{\parbox{4cm}{\centering\textbf{Perdas Econômicas}\\ \textbf{Estimadas (R\$ milhões)}}} \\
+			& & & \\
+			& & & \\
+			\hline
+			2010 & 9  & 320  & 1.200  \\
+			\hline
+			2012 & 11 & 150  & 2.100  \\
+			\hline
+			2014 & 10 & 420  & 1.800  \\
+			\hline
+			2016 & 12 & 280  & 2.500  \\
+			\hline
+			2018 & 8  & 460  & 1.600  \\
+			\hline
+			2020 & 10 & 390  & 2.300  \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	Nas últimas décadas, o avanço das tecnologias de sensoriamento remoto e a ampliação de redes de monitoramento climático proporcionaram o acúmulo de grandes volumes de dados climáticos~\cite{andrade2020}. No entanto, a análise desses dados de forma eficiente, de modo a extrair informações úteis para previsões de eventos climáticos extremos, ainda enfrenta desafios significativos~\cite{santos2018}. Entre esses desafios estão a alta variabilidade temporal e espacial dos dados e a complexidade das interações entre os fatores climáticos que determinam as condições meteorológicas na região. Tradicionalmente, métodos estatísticos têm sido utilizados para analisar esses dados, mas sua capacidade de capturar padrões não lineares e de alto nível tem se mostrado limitada.
+	
+	Nos últimos anos, o aprendizado de máquina (ML) emergiu como uma poderosa ferramenta na análise de grandes volumes de dados (Big Data), devido à sua capacidade de identificar padrões complexos, prever resultados futuros e aprender com dados históricos~\cite{almeida2021}. 
+	
+	O uso de algoritmos de aprendizado de máquina na previsão de fenômenos climáticos tem se mostrado promissor ao longo dos últimos anos, especialmente quando aplicado a regiões com alta variabilidade climática, como o semiárido brasileiro. Conforme mostrado na Tabela~\ref{tab:algoritmos_ml_previsao_climatica}, diversos algoritmos, como Redes Neurais, Florestas Aleatórias e Máquinas de Vetores de Suporte (SVM), foram utilizados com sucesso para prever eventos extremos como secas, chuvas intensas e variações de temperatura em várias regiões do Brasil. Essas técnicas têm sido aplicadas em diversas áreas, desde a medicina até a análise financeira, com resultados impressionantes~\cite{ribeiro2017}. No entanto, a aplicação dessas técnicas em contextos climáticos, e mais especificamente no semiárido brasileiro, ainda é um campo em desenvolvimento.
+	
+	\begin{table}[ht]
+		\centering
+		\caption{Aplicação de Algoritmos de Aprendizado de Máquina em Previsão Climática (2015-2020)}
+		\label{tab:algoritmos_ml_previsao_climatica}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			\multirow{2}{*}{\textbf{Ano}} & \multirow{2}{*}{\parbox{3cm}{\centering \textbf{Algoritmo}}} & \multirow{2}{*}{\parbox{4cm}{\centering \textbf{Fenômeno Previsível}}} & \multirow{2}{*}{\parbox{3cm}{\centering \textbf{Precisão (\%)}}} & \multirow{2}{*}{\parbox{3cm}{\centering \textbf{Região de Estudo}}} \\
+			& & & & \\
+			\hline
+			\multirow{2}{*}{2015} & \multirow{2}{*}{Redes Neurais} & \multirow{2}{*}{\parbox{4cm}{\centering Previsão de Chuvas Intensas}} & \multirow{2}{*}{85\%} & \multirow{2}{*}{Sudeste} \\
+			& & & & \\
+			\hline
+			\multirow{2}{*}{2016} & \multirow{2}{*}{Floresta Aleatória} & \multirow{2}{*}{Previsão de Secas} & \multirow{2}{*}{78\%} & \multirow{2}{*}{Nordeste} \\
+			& & & & \\
+			\hline
+			\multirow{2}{*}{2017} & \multirow{2}{*}{SVM} & \multirow{2}{*}{Previsão de Temperatura} & \multirow{2}{*}{83\%} & \multirow{2}{*}{Centro-Oeste} \\
+			& & & & \\
+			\hline
+			\multirow{2}{*}{2018} & \multirow{2}{*}{RNN} & \multirow{2}{*}{\parbox{4cm}{\centering Análise de Séries Temporais de Chuvas}} & \multirow{2}{*}{87\%} & \multirow{2}{*}{Sul} \\
+			& & & & \\
+			\hline
+			\multirow{2}{*}{2019} & \multirow{2}{*}{K-Means} & \multirow{2}{*}{\parbox{4cm}{\centering Identificação de Padrões Climáticos}} & \multirow{2}{*}{80\%} & \multirow{2}{*}{Norte} \\
+			& & & & \\
+			\hline
+			\multirow{2}{*}{2020} & \multirow{2}{*}{CNN} & \multirow{2}{*}{\parbox{4cm}{\centering Previsão de Fenômenos Extremos}} & \multirow{2}{*}{90\%} & \multirow{2}{*}{Semiárido} \\
+			& & & & \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	Em 2020, a aplicação de Redes Neurais Convolucionais (CNN) na previsão de fenômenos climáticos extremos no semiárido atingiu uma precisão de 90\%, demonstrando o potencial dessa técnica para melhorar a capacidade de prever eventos críticos que afetam a vida das populações vulneráveis. Essa crescente precisão e diversidade de abordagens reforça a importância de continuar investindo na pesquisa e desenvolvimento de novos modelos para prever com maior acurácia eventos climáticos extremos, mitigando seus impactos socioeconômicos.
+	
+	A análise da distribuição de precisão dos algoritmos de aprendizado de máquina aplicados à previsão climática, conforme mostrado na Figura~\ref{fig:violin_plot_precisao}, revela diferenças significativas entre os métodos utilizados. Redes Neurais Convolucionais (CNN), por exemplo, apresentaram uma maior precisão na previsão de fenômenos extremos, com uma média de 90\%, enquanto algoritmos como Floresta Aleatória tiveram uma precisão mais baixa. Isso reforça a importância de continuar explorando diferentes técnicas de aprendizado de máquina para melhorar a capacidade preditiva em cenários climáticos complexos, como o semiárido brasileiro.
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.8\textwidth]{imagens/graficos/violin\_plot\_precisao}
+		\caption{Distribuição de Precisão dos Algoritmos de Aprendizado de Máquina}
+		\label{fig:violin_plot_precisao}
+	\end{figure}
+	
+	
+	Este projeto de pesquisa propõe investigar o potencial do aprendizado de máquina na detecção e análise de padrões climáticos na região semiárida do Brasil, com foco na previsão de eventos extremos~\cite{souza2022}, como secas prolongadas e episódios de chuva intensa. A ideia central é utilizar modelos de aprendizado supervisionado e não supervisionado para explorar dados climáticos históricos, identificar tendências e padrões não triviais~\cite{oliveira2019}, e desenvolver modelos preditivos que possam ser aplicados ao monitoramento climático em tempo real.
+	
+	Espera-se que a pesquisa traga contribuições em múltiplos níveis. Primeiro, ao explorar novas metodologias e algoritmos adaptados para as especificidades do semiárido, como a escassez de dados contínuos e as variações climáticas abruptas~\cite{campos2023}. Segundo, ao fornecer ferramentas preditivas que possam auxiliar tomadores de decisão no planejamento de políticas públicas e na gestão de recursos hídricos e agrícolas. A previsão antecipada de secas ou chuvas intensas pode possibilitar a adoção de medidas preventivas, como a alocação de água em reservatórios, a adoção de culturas mais resilientes à seca, ou mesmo a execução de planos de emergência para a população mais vulnerável.
+	
+	Adicionalmente, o projeto também visa contribuir para o corpo de conhecimento na área de aprendizado de máquina aplicada à climatologia regional, permitindo uma melhor compreensão de como os algoritmos podem ser ajustados e otimizados para lidar com as particularidades do clima semiárido~\cite{silva2020}. A capacidade de melhorar a precisão e a robustez dos modelos preditivos pode ser um passo decisivo para o avanço de tecnologias de previsão climática em regiões que historicamente têm sido negligenciadas nos grandes estudos climatológicos.
+	
+	Assim, o presente estudo propõe uma abordagem interdisciplinar que combina ciência de dados, aprendizado de máquina, climatologia e gestão ambiental, com o objetivo de fornecer soluções que possam transformar dados climáticos em conhecimento acionável para a gestão sustentável do semiárido~\cite{melo2021}. Ao contribuir com novos insights e tecnologias para a previsão climática, o projeto tem o potencial de impactar positivamente a vida de milhões de pessoas que vivem e dependem dos recursos naturais desta região, além de fornecer subsídios importantes para a formulação de políticas públicas mais eficazes e inclusivas.
+	
+	Essa abordagem inovadora, ao utilizar o aprendizado de máquina em um contexto de alta relevância social e ambiental, coloca o projeto na vanguarda da pesquisa sobre adaptação climática em áreas vulneráveis. Com o apoio de redes de monitoramento, universidades e centros de pesquisa especializados, o projeto visa não apenas avanços teóricos, mas também impactos práticos no planejamento e na mitigação de riscos climáticos no semiárido brasileiro.
+
+	Este documento está organizado da seguinte forma: a Seção~\ref{sec:objetivos} apresenta os objetivos gerais e específicos do projeto, que abrangem desde o desenvolvimento de modelos preditivos até a implementação de um sistema de alerta precoce. A Seção~\ref{sec:metodologia} detalha a metodologia que será aplicada, incluindo a coleta de dados, a seleção de algoritmos de aprendizado de máquina e a avaliação dos modelos desenvolvidos. Em seguida, a Seção~\ref{sec:contribuicao_esperada} discute as contribuições esperadas, tanto no campo acadêmico quanto em termos de impacto prático para a região. Por fim, o cronograma de atividades (Seção~\ref{sec:cronograma}) delineia as etapas do projeto, garantindo que as metas propostas sejam cumpridas de maneira estruturada e dentro dos prazos estabelecidos.
+	
+	\scisection{Objetivos}\label{sec:objetivos}
+
+	\scisubsection{Geral}\label{sec:objetivo_geral}
+	
+	Desenvolver e aplicar modelos de aprendizado de máquina para identificar padrões climáticos e prever eventos extremos, como secas e chuvas intensas, na região semiárida do Brasil, com o intuito de contribuir para a mitigação dos impactos socioeconômicos e ambientais dessa variabilidade climática.
+	
+	\scisubsection{Específicos}\label{sec:objetivos_especificos}
+	
+	\begin{itemize}
+		\item Analisar os dados climáticos históricos da região semiárida brasileira;
+		\item Explorar e adaptar algoritmos de aprendizado de máquina ao contexto climático do semiárido;
+		\item Desenvolver modelos preditivos para eventos climáticos extremos;
+		\item Criar um sistema de alerta precoce para eventos climáticos extremos;
+		\item Avaliar o impacto socioeconômico da aplicação dos modelos preditivos;
+		\item Divulgar os resultados da pesquisa para a comunidade acadêmica e stakeholders.
+	\end{itemize}
+
+	\scisection{Metodologia}\label{sec:metodologia}
+	
+	A presente pesquisa será conduzida utilizando uma abordagem quantitativa e experimental, com ênfase na aplicação de técnicas de aprendizado de máquina para análise e previsão de eventos climáticos extremos na região semiárida do Brasil. A metodologia estará dividida em diversas etapas, que incluem a coleta e tratamento de dados, a escolha e implementação de algoritmos de aprendizado de máquina, a avaliação dos modelos, e a criação de um sistema de alerta precoce. Cada etapa será detalhada a seguir.
+	
+	\scisubsection{Coleta e Tratamento de Dados}\label{sec:coleta_tratamento_dados}
+	\scisubsubsection{Fontes de Dados Climáticos}\label{sec:fontes_dados_climaticos}
+	A base de dados utilizada no estudo será composta por informações climáticas históricas provenientes de fontes públicas e confiáveis, tais como:
+	
+	\begin{itemize}
+		\item Instituto Nacional de Meteorologia (INMET);
+		\item Centro Nacional de Monitoramento e Alertas de Desastres Naturais (CEMADEN);
+		\item Agência Nacional de Águas (ANA);
+		\item Bases globais de dados climáticos, como o Climate Data Store da Copernicus.
+	\end{itemize}
+	
+	Esses dados incluirão informações sobre pluviosidade, temperatura, umidade, velocidade dos ventos, pressão atmosférica, e outros indicadores relevantes para a região semiárida brasileira.
+	
+	\scisubsubsection{Limpeza e Pré-processamento dos Dados}\label{sec:limpeza_preprocessamento_dados}
+	Após a coleta dos dados, será realizada uma etapa de pré-processamento para garantir a qualidade das informações, o que inclui:
+	
+	\begin{itemize}
+		\item Tratamento de dados ausentes ou incompletos, por meio de imputação ou exclusão seletiva;
+		\item Normalização e padronização dos dados para adequá-los aos modelos de aprendizado de máquina;
+		\item Transformação de séries temporais para análise de padrões de curto e longo prazo;
+		\item Integração de dados climáticos com informações socioeconômicas da região, como impacto das secas e atividades agrícolas.
+	\end{itemize}
+	
+	\scisubsection{Seleção e Implementação de Algoritmos de Aprendizado de Máquina}\label{sec:selecao_implementacao_algoritmos}
+	\scisubsubsection{Definição de Modelos Preditivos}\label{sec:definicao_modelos_preditivos}
+	Serão testados e ajustados diferentes algoritmos de aprendizado de máquina, com o objetivo de identificar o mais adequado para prever eventos extremos, como secas e chuvas intensas. Os modelos que serão inicialmente considerados incluem:
+	
+	\begin{itemize}
+		\item Redes Neurais Artificiais (ANNs): Modelos poderosos para a identificação de padrões não lineares em grandes volumes de dados.
+		\item Florestas Aleatórias (Random Forest): Algoritmo baseado em árvores de decisão, capaz de lidar com grandes dimensões e variáveis correlacionadas.
+		\item SVM (Máquinas de Vetores de Suporte): Método eficaz para classificação e regressão, especialmente em problemas de alta dimensionalidade.
+		\item K-Means e Modelos de Clusterização: Para a identificação de padrões climáticos recorrentes no semiárido.
+		\item Redes Neurais Recorrentes (RNN) e LSTM (Long Short-Term Memory): Modelos adequados para séries temporais, visando capturar dependências de longo prazo nos dados climáticos.
+	\end{itemize}
+	
+	\scisubsubsection{Implementação e Treinamento dos Modelos}\label{sec:implementacao_treinamento_modelos}
+	Os modelos serão implementados utilizando bibliotecas amplamente aceitas na comunidade de aprendizado de máquina, como TensorFlow, Keras, Scikit-learn e PyTorch. O treinamento dos modelos ocorrerá em uma infraestrutura com capacidade computacional adequada para lidar com grandes volumes de dados, utilizando servidores com suporte a GPUs (Graphics Processing Units) para acelerar o processamento.
+	
+	Para garantir uma análise rigorosa, será adotada a abordagem de validação cruzada (cross-validation), com o uso de diferentes conjuntos de treinamento, validação e teste. A acurácia e a capacidade preditiva dos modelos serão monitoradas por métricas como:
+	
+	\begin{itemize}
+		\item Acurácia;
+		\item Precisão;
+		\item Recall;
+		\item F1-Score;
+		\item Erro médio absoluto (MAE) e erro quadrático médio (MSE) para modelos de regressão.
+	\end{itemize}
+	
+	\scisubsection{Análise e Avaliação dos Modelos}\label{sec:analise_avaliacao_modelos}
+	\scisubsubsection{Avaliação de Desempenho}\label{sec:avaliacao_desempenho}
+	Os modelos desenvolvidos serão avaliados quanto à sua capacidade de prever eventos climáticos extremos, comparando os resultados preditivos com os dados históricos reais. As previsões incluirão secas prolongadas e chuvas intensas, e serão analisadas tanto em termos de precisão quanto de antecipação dos eventos.
+	
+	\scisubsubsection{Ajuste de Hiperparâmetros}\label{sec:ajuste_hiperparametros}
+	Os algoritmos serão otimizados por meio do ajuste de hiperparâmetros, utilizando técnicas como busca em grade (grid search) e otimização Bayesiana, para maximizar o desempenho dos modelos. O desempenho dos modelos será comparado para identificar o mais adequado ao contexto do semiárido brasileiro.
+	
+	\scisubsubsection{Interpretação dos Resultados}\label{sec:interpretacao_resultados}
+	Além da acurácia dos modelos, será feita uma análise interpretativa para entender as variáveis climáticas que mais contribuem para a previsão de eventos extremos. Essa análise fornecerá insights sobre os fatores que mais impactam as condições meteorológicas na região.
+	
+	\scisubsection{Desenvolvimento de um Sistema de Alerta Precoce}\label{sec:sistema_alerta_precoce}
+	\scisubsubsection{Implementação de um Sistema de Alerta}\label{sec:implementacao_sistema_alerta}
+	Com base nos modelos preditivos desenvolvidos, será implementado um sistema de alerta precoce que possa ser utilizado para informar comunidades, agricultores e gestores públicos sobre a iminência de eventos extremos. O sistema será projetado para ser acessível por meio de plataformas web e mobile, garantindo a disseminação das previsões em tempo real.
+	
+	\scisubsubsection{Integração com Órgãos de Monitoramento}\label{sec:integracao_orgaos_monitoramento}
+	Será proposta uma integração com órgãos locais e nacionais de monitoramento climático, como o CEMADEN, para o fornecimento contínuo de dados em tempo real, garantindo a atualização constante dos modelos e a precisão nas previsões.
+	
+	\scisubsection{Estudo de Caso: Aplicação em Comunidades Rurais}\label{sec:estudo_caso}
+	Um estudo de caso será realizado em algumas comunidades rurais do semiárido brasileiro para avaliar a eficácia dos modelos preditivos no contexto prático. Serão coletados dados sobre as decisões tomadas com base nas previsões (ex.: alocação de água, escolha de culturas) e seus impactos sociais e econômicos. Esse estudo servirá como base para refinar as aplicações práticas dos modelos desenvolvidos e propor melhorias.
+	
+	\scisubsection{Divulgação Científica e Técnica}\label{sec:divulgacao_cientifica}
+	\scisubsubsection{Publicação dos Resultados}\label{sec:publicacao_resultados}
+	Os resultados obtidos ao longo da pesquisa serão documentados e publicados em periódicos científicos e apresentados em conferências internacionais, como forma de contribuir para o avanço do estado da arte na área de aprendizado de máquina aplicado à climatologia regional.
+	
+	\scisubsubsection{Disponibilização dos Modelos e Dados}\label{sec:disponibilizacao_modelos_dados}
+	Os modelos desenvolvidos e os conjuntos de dados tratados serão disponibilizados para a comunidade científica em repositórios públicos, promovendo a reprodutibilidade e a continuidade de pesquisas na área. A colaboração com outros grupos de pesquisa será incentivada para o aprimoramento das técnicas propostas.
+	
+	\scisection{Contribuição Esperada}\label{sec:contribuicao_esperada}
+	
+	Este projeto de pesquisa trará contribuições significativas tanto para o campo acadêmico quanto para o contexto prático, especialmente em relação à previsão de eventos climáticos extremos e à mitigação de seus impactos na região semiárida do Brasil. A principal expectativa é avançar na aplicação de técnicas de aprendizado de máquina para a análise de padrões climáticos, permitindo a criação de modelos capazes de prever com maior precisão e antecedência eventos como secas prolongadas e chuvas intensas. Essa inovação não só contribuirá para o conhecimento científico sobre a climatologia regional, mas também poderá ser adaptada para outros contextos globais que enfrentam desafios climáticos semelhantes.
+	
+	Além disso, o projeto proporcionará o desenvolvimento de ferramentas preditivas que serão de grande utilidade para tomadores de decisão, como gestores de recursos hídricos e agricultores. O sistema de alerta precoce a ser implementado será projetado para fornecer previsões em tempo real, permitindo que comunidades vulneráveis possam planejar com mais eficiência suas atividades agrícolas e otimizar o uso de recursos hídricos. A acessibilidade do sistema, tanto via plataformas web quanto mobile, garantirá que essas informações cheguem de maneira prática e eficiente aos usuários finais.
+	
+	A pesquisa também terá um impacto importante no desenvolvimento sustentável da região semiárida. Ao fornecer previsões climáticas mais precisas, o projeto contribuirá para a melhor gestão de recursos naturais, como água e terra, favorecendo a agricultura de subsistência e a resiliência econômica das comunidades locais. A mitigação dos impactos das secas e chuvas intensas, por meio de medidas preventivas, ajudará a proteger as populações mais vulneráveis e a garantir a segurança alimentar. Essa contribuição está alinhada com os objetivos globais de desenvolvimento sustentável, especialmente no que tange à erradicação da pobreza e à gestão sustentável da água.
+	
+	No campo científico, o projeto resultará na produção de publicações em periódicos e conferências especializadas, trazendo visibilidade para a aplicação de aprendizado de máquina em climatologia. A divulgação dos resultados permitirá que a comunidade científica explore novos métodos e algoritmos para previsão climática em regiões de alta variabilidade. Além disso, os modelos desenvolvidos e os dados utilizados serão disponibilizados em repositórios públicos, promovendo a reprodutibilidade dos estudos e incentivando novas pesquisas na área.
+	
+	A capacitação de recursos humanos é outro ponto de destaque. Ao envolver alunos de graduação e pós-graduação, o projeto contribuirá para a formação de profissionais com conhecimento em aprendizado de máquina e análise de dados climáticos. A troca de conhecimento entre a equipe de pesquisa e profissionais de instituições parceiras também será fundamental para a disseminação das tecnologias desenvolvidas e sua adoção no planejamento de políticas públicas.
+	
+	Por fim, a contribuição socioeconômica do projeto será expressiva, pois permitirá que agricultores e gestores de políticas públicas façam uso das previsões para tomar decisões mais assertivas, otimizando o uso de recursos e evitando perdas financeiras. A longo prazo, a pesquisa poderá reduzir os impactos das variações climáticas extremas no semiárido, promovendo maior segurança alimentar e hídrica para a população local e melhorando a qualidade de vida nas comunidades mais afetadas pelas mudanças climáticas.
+	
+	% Seção do cronograma de atividades
+	\schedule{
+		\yearbox{2024}{ % pode adicionar quantos anos quiser
+			\activity{Atividade 1}{\firstmember}{ % para cada ano, pode adicionar quantas atividades quiser
+				\fistsemester{X}{X}{}{}{}{}  % marcação da atividade no primeiro semestre
+			}{
+				\secondsemester{}{}{}{}{}{}  % marcação da atividade no segundo semestre
+			}
+			\activity{Atividade 2}{\thirdmember}{
+				\fistsemester{}{}{X}{X}{}{}
+			}{
+				\secondsemester{}{}{}{}{}{}
+			}
+			\activity{Atividade 3}{\secondmember}{
+				\fistsemester{}{}{}{}{X}{X}
+			}{
+				\secondsemester{}{}{}{}{}{}
+			}
+			\activity{Atividade 4}{\firstmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{X}{X}{}{}{}{}
+			}
+			\activity{Atividade 5}{\fourthmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{X}{X}{}{}
+			}
+			\activity{Atividade 6}{\firstmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{X}{X}{}
+			}
+			\activity{Atividade 7}{\thirdmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{}{X}{}
+			}
+			\activity{Atividade 8}{\fourthmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{}{X}{X}
+			}
+			\activity{Atividade 9}{\firstmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{}{}{X}
+			}
+		}
+		\yearbox{2025}{ % adicionando mais um ano
+			\activity{Atividade 10}{\firstmember}{
+				\fistsemester{X}{X}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{}{}{}
+			}
+			\activity{Atividade 11}{\thirdmember}{
+				\fistsemester{}{}{X}{X}{}{}
+			}{
+				\secondsemester{}{}{}{}{}{}
+			}
+			\activity{Atividade 12}{\secondmember}{
+				\fistsemester{}{}{}{}{X}{X}
+			}{
+				\secondsemester{}{}{}{}{}{}
+			}
+			\activity{Atividade 13}{\firstmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{X}{X}{}{}{}{}
+			}
+			\activity{Atividade 14}{\fourthmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{X}{X}{}{}
+			}
+			\activity{Atividade 15}{\firstmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{X}{X}{}
+			}
+			\activity{Atividade 16}{\thirdmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{}{X}{}
+			}
+			\activity{Atividade 17}{\fourthmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{}{X}{X}
+			}
+			\activity{Atividade 18}{\firstmember}{
+				\fistsemester{}{}{}{}{}{}
+			}{
+				\secondsemester{}{}{}{}{}{X}
+			}
+		}
+	}\label{sec:cronograma}
+
+	% Estilo de referências bibliográficas
+	\bibliographystyle{unsrt}
+	
+	% Arquivo .bib com as referências (BibTeX)
+	\bibliography{referencias}
+
+	% Bloco de assinatura do responsável pelo projeto (com data)
+	\signatureblock{2cm}{15/10/2024} % o primeiro argumento é a distância desse bloco para as referências
+	
+\end{document}

@@ -1,0 +1,13 @@
+# Arquivos de compilação
+*.aux
+*.bbl
+*.blg
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# Arquivos de bibliografia
+*.bbl
+*.blg
